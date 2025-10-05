@@ -4,6 +4,8 @@ import { PerformanceMetrics } from "@/components/PerformanceMetrics";
 import { LatencyChart } from "@/components/LatencyChart";
 import { ThroughputChart } from "@/components/ThroughputChart";
 import { LoadTestPanel } from "@/components/LoadTestPanel";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -110,14 +112,17 @@ const Index = () => {
       {/* Header */}
       <header className="border-b-4 border-foreground/10 bg-card neo-shadow">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary rounded-lg neo-shadow">
-              <Search className="h-8 w-8 text-primary-foreground" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-primary rounded-lg neo-shadow">
+                <Search className="h-8 w-8 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold tracking-tight">The Latency Detective</h1>
+                <p className="text-muted-foreground">Node.js Performance Profiling & Optimization</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">The Latency Detective</h1>
-              <p className="text-muted-foreground">Node.js Performance Profiling & Optimization</p>
-            </div>
+            <ThemeToggle />
           </div>
         </div>
       </header>
@@ -174,13 +179,7 @@ const Index = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="mt-16 border-t-4 border-foreground/10 bg-card">
-        <div className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-          <p>Performance diagnostic simulation for educational purposes</p>
-          <p className="mt-1">Built with React, TypeScript, and Lovable Cloud</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
