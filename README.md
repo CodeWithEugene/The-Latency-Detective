@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# 🕵️‍♂️ The Latency Detective  
+### Profiling and Performance Optimization in High-Concurrency Node.js Systems  
+A full-stack performance profiling and optimization platform built to detect, analyze, and eliminate latency bottlenecks in Node.js applications. The system benchmarks a deliberately unoptimized API, visualizes its performance under load, and then refactors it using **Worker Threads** to achieve near real-time responsiveness. Performance metrics are logged in **Supabase** and visualized through an interactive **React Dashboard** — expressed in **Kenyan Shillings (KSH)** to represent “cost of latency.”  
 
-## Project info
+## 🚀 Project Overview  
+Node.js is fast, but single-threaded. When CPU-intensive tasks block the **Event Loop**, overall throughput drops — especially under high concurrency. **The Latency Detective** helps developers *see* and *solve* this problem by combining profiling, multithreading, and visualization in a single, cohesive platform.  
 
-**URL**: https://lovable.dev/projects/aaff627a-4c1d-456c-be40-1764e053d50c
+## 🧩 System Architecture  
+### 🏗️ Overview  
+# 🕵️‍♂️ The Latency Detective – System Architecture
 
-## How can I edit this code?
+A full-stack Node.js performance profiling and optimization system powered by Worker Threads, React (Vite/Next.js), and Supabase — built to analyze and visualize latency improvements in real-time (with currency metrics in KSH).
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🧭 System Architecture (Horizontal Overview)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/aaff627a-4c1d-456c-be40-1764e053d50c) and start prompting.
+| Component | Technology | Responsibilities |
+|-----------|------------|------------------|
+| **Frontend** | React (Vite/Next.js) | • Interactive dashboard with metrics visualization<br>• Load testing interface for 100 concurrent requests<br>• Display performance costs in Kenyan Shillings (KES) |
+| **Backend** | Node.js + TypeScript + Express | • Process CPU-intensive tasks via /api/process-data<br>• Implement Worker Threads for workload offloading<br>• Collect profiling and performance metrics |
+| **Database** | Supabase (PostgreSQL) | • Store latency test results and timestamps<br>• Handle user authentication (optional)<br>• Enable real-time metrics tracking with RLS |
 
-Changes made via Lovable will be committed automatically to this repo.
+## ⚙️ Tech Stack  
+| Layer | Technology | Purpose |
+|-------|-------------|----------|
+| **Frontend** | React (Vite/Next.js), TypeScript, Tailwind CSS | Interactive performance dashboard |
+| **Backend** | Node.js, Express, Worker Threads, TypeScript | API, benchmarking, and optimization |
+| **Database** | Supabase (PostgreSQL) | Store latency metrics & logs |
+| **Dev Tools** | Node.js Profiler, Chrome DevTools, Autocannon | Profiling and load testing |
+| **Deployment** | Vercel (Frontend), Render/Railway (Backend) | Hosting and CI/CD |
 
-**Use your preferred IDE**
+## 🔍 Features  
+### 🧠 Phase 1: Baseline Profiling  
+- Unoptimized endpoint: `POST /api/process-data`  
+- Simulates CPU-heavy workload (e.g., Fibonacci sequence)  
+- Measured under 100 concurrent requests  
+- Uses `autocannon` for load testing  
+- Captures flame graph and CPU profile  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### ⚡ Phase 2: Worker Thread Optimization  
+- Offloads heavy computation to a separate thread  
+- Main thread freed for I/O operations  
+- Async communication with Promise-based Worker  
+- Results in 90%+ reduction in latency under load  
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 📊 Phase 3: Visualization Dashboard  
+- React-based dashboard for:  
+  - Baseline vs Optimized latency  
+  - CPU utilization graphs  
+  - Throughput charts  
+- Uses Recharts/Chart.js for data visualization  
+- Displays performance cost in **KSH (Kenyan Shillings)**  
 
-Follow these steps:
+### 💾 Phase 4: Metrics Logging with Supabase  
+- Logs test runs: latency, concurrency level, timestamps  
+- Stores optimization percentage  
+- Optional Auth (JWT) for developer-only dashboard access  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 💡 Example Endpoints  
+| Method | Endpoint | Description |
+|--------|-----------|--------------|
+| `POST` | `/api/process-data` | Runs CPU-intensive computation (unoptimized/optimized) |
+| `GET` | `/api/metrics` | Returns average latency and improvement stats |
+| `GET` | `/api/health` | Simple health check endpoint |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🧮 Example Output  
+### 🔴 Before Optimization  
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Average Latency: 3.8 seconds
+- CPU Usage: 97%
+- Event Loop Blocked: Yes
+### 🟢 After Optimization
+- Average Latency: 55 milliseconds
+- CPU Usage: 37%
+- Event Loop Blocked: No
+- Latency Improved by: 98.5%
+## 🛠️ Setup & Installation
+#### 1️⃣ Clone Repositories
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- git clone https://github.com/yourusername/latency-detective-backend.git
+- git clone https://github.com/yourusername/latency-detective-frontend.git
+#### 2️⃣ Backend Setup
 
-**Edit a file directly in GitHub**
+- cd latency-detective-backend
+- npm install
+- cp .env.example .env
+- Add your Supabase credentials
+- npm run dev
+#### 3️⃣ Frontend Setup
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/aaff627a-4c1d-456c-be40-1764e053d50c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- cd latency-detective-frontend
+- npm install
+- npm run dev
+### 🧰 Load Testing
+- Use autocannon to simulate concurrent requests:
+- npx autocannon -c 100 -d 15 http://localhost:4000/api/process-data
+### 📊 Profiling Commands
+- Chrome DevTools Profiling
+- node --inspect app.js
+### Open chrome://inspect in Chrome and start profiling
+- CLI Profiling
+- node --prof app.js
+- node --prof-process isolate-*.log > processed.txt
